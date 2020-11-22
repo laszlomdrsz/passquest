@@ -1,0 +1,22 @@
+#recording-icon {
+    position: fixed;
+    z-index: 3;
+    top: 8px;
+    right: 8px;
+    display: none;
+    animation: flickerAnimation .5s infinite;
+}
+
+#recording-icon span {
+    height: 25px;
+    width: 25px;
+    background-color: #f00;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+@keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}

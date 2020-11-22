@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
+
+body *{
+    font-family: 'Rakkas', cursive;
+    
+}
+
+h1, h2 {
+    text-shadow: 1px 4px 0px #333;
+}
+
+h1 {
+    margin-bottom: 20px;
+}

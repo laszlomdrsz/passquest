@@ -1,0 +1,26 @@
+button {
+    box-shadow: 1px 4px 0px #333;
+    padding: 5px 25px;
+    background: #777;
+    border: 2px solid #111;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+button:active {
+    border: #0a0;
+}
+
+input, input:disabled {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: rgba(239, 239, 239, 0.3);
+    border-color: rgba(118, 118, 118, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 2px 0px #333;
+}

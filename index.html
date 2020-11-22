@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Assets/css/engine.css">
+    <link rel="stylesheet" href="./Assets/css/font.css">
+    <link rel="stylesheet" href="./Assets/css/icons.css">
+    <link rel="stylesheet" href="./Assets/css/input.css">
+    <link rel="stylesheet" href="./Assets/css/menu.css">
+    <link rel="stylesheet" href="./Assets/css/reset.css">
+    <link rel="stylesheet" href="./Assets/css/ui.css">
+    <title>Teszt</title>
+</head>
+<body>
+    
+    <!-- Pálya JSON letöltéshez -->
+    <a id="downloadAnchorElem" style="display:none"></a>
+
+    <div id="recording-icon">
+        <span></span>
+    </div>
+
+    <div class="container">
+        <div id="start-screen" class="menu-screen">
+            <div class="screen-content">
+                <h1>Level <span id="level-number"></span></h1>
+                <button id="game-start-button">Start</button>
+            </div>
+        </div>
+    
+        <div id="new-weapon-screen" class="menu-screen">
+            <div class="screen-content">
+                <h2>Shout a name for your new weapon!</h2>
+                <div class="weapon-image">
+                    <img>
+                </div>
+                <p>RNG:<span class="weapon-rng"></span> SPD:<span class="weapon-spd"></span> DMG:<span class="weapon-dmg"></span></p>
+                <input id="weapon-name-input" disabled>
+                <button id="weapon-name-again-button">Try again</button>
+                <button id="weapon-name-submit-button">Save</button>
+            </div>
+        </div>
+    
+        <div id="end-screen" class="menu-screen">
+            <div class="screen-content">
+                <h2 id="end-success-text"></h2>
+                <p>XP: <span id="end-xp"></span></p>
+                <button id="share-button">Let your friend continue the game!</button>
+            </div>
+        </div>
+    </div>
+    <div id="canvas-container">
+        <div id="ui-current-weapon">
+            <img>
+            <p>DMG: <span class="dmg"></span></p>
+            <p>SPD: <span class="spd"></span></p>
+            <p>RNG: <span class="rng"></span></p>
+        </div>
+        <canvas id="game"></canvas>
+    </div>
+
+    <script src="./Assets/script/seedrandom.js"></script>
+    <script src="./Utils/utils.js"></script>
+    <script src="./index.js"></script>
+    <script src="./GameStrategy/map.js"></script>
+    <script src="./GameStrategy/entity.js"></script>
+    <script src="./GameStrategy/stats.js"></script>
+    <script src="./Application/renderer.js"></script>
+    <script src="./GameStrategy/game.js"></script>
+    <script src="./Application/application.js"></script>
+    <script src="./Infrastructure/share.js"></script>
+    <script src="./Infrastructure/speech.js"></script>
+    <script src="./GameEngine/engine.js"></script>
+    <script src="./GameEngine/controls.js"></script>
+    <script src="./GameEngine/entity.js"></script>
+    <script src="./GameEngine/graphics.js"></script>
+    <script src="./GameEngine/ui.js"></script>
+</body>
+</html>

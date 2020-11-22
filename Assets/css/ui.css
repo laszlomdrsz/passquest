@@ -1,0 +1,14 @@
+#ui-current-weapon {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    display: none;
+    z-index: 2;
+    color: #fff;
+    text-shadow: 1px 4px 0px #333;
+    
+}
+
+#ui-current-weapon img {
+    width: 50px;
+}
