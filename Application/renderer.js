@@ -28,6 +28,7 @@ class MenuRenderer {
             document.querySelector('#end-xp').innerHTML = shareDetails.xp;
             endScreen.style.display = 'block';
             document.querySelector('#share-button').addEventListener("click", function() {
+                document.querySelector('#share-clipboard-text').style.display = 'block';
                 resolve()
             });
         })
@@ -84,7 +85,6 @@ class MenuRenderer {
         this.startRecording();
         const speechInputValue = await this.speechInfrastructure.listenOnce();
         this.stopRecording()
-        console.log(speechInputValue);
         weaponNameInput.value = speechInputValue;
     }
 

@@ -1,7 +1,6 @@
 onmessage = function(message) {
     const data = message.data;
     const result = chooseWeapon(data[0], data[1]);
-    console.log('message', result);
     postMessage(result);
 }
 
@@ -11,6 +10,7 @@ function chooseWeapon(weapons, text) {
     const weaponNames = weapons.filter(weapon => weapon.name).map(weapon => weapon.name);
     let closestWeaponName = null;
     let smallestDistance = null;
+    
     for (const weaponName of weaponNames) {
         const distance = levDist(text, weaponName);
         if (smallestDistance === null || smallestDistance > distance) {
@@ -18,11 +18,19 @@ function chooseWeapon(weapons, text) {
             closestWeaponName = weaponName;
         }
     }
-    const weaponIndex = weapons.find(weapon => closestWeaponName === weapon.name);
+    const weaponIndex = weapons.findIndex(weapon => closestWeaponName === weapon.name);
     if (weaponIndex < weapons.length && weaponIndex > -1) {
-        return weaponIndex;
+        return {
+            weaponIndex, 
+            weapon: weapons[weaponIndex], 
+            text
+        };
     }
-    return 0;
+    return {
+        weaponIndex: 0,
+        weapon: weapons[0],
+        text
+    };
     
 }
 

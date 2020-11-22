@@ -48,7 +48,7 @@ class Entity{
     renderHealthbar(ctx) {
       const hpRatio = this.hp / this.maxHp;
       const healthBarLength = this.size * hpRatio;
-      drawRect(ctx, this.pos.x - this.size / 2, this.pos.y - this.size, this.size, 15, '#f00');
+      drawRect(ctx, this.pos.x - this.size / 2, this.pos.y - this.size, healthBarLength, 15, '#f00');
     }
 
     renderAll(ctx) {
@@ -64,7 +64,7 @@ class Player extends Entity {
     imgUrlToImg('/Assets/img/entities/player-1.png'),
     imgUrlToImg('/Assets/img/entities/player-2.png'),
   ];
-  currentWeapon = 0;
+  currentWeapon = null;
     constructor(x, y, hp, speed, type, damage, range, xp, weapons){
       super(x, y);
       this.hp = hp;
@@ -76,10 +76,11 @@ class Player extends Entity {
       this.xp = xp;
       this.active = false;
       this.weapons = weapons;
-      this.chooseWeapon(this.currentWeapon);
+      this.chooseWeapon(0);
     }
 
     chooseWeapon(index) {
+      console.log(index, this.weapons);
       this.currentWeapon = this.weapons[index];
     }
 

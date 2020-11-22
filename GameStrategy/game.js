@@ -125,7 +125,6 @@ class GameManager {
         this.menuRenderer.canvasMode();
         const gameResult = await this.gameController.start();
         const shareDetails = await this.endGame(gameResult);
-        
         return shareDetails;
     }
 
@@ -137,8 +136,9 @@ class GameManager {
         const weapons = this.gameFactory.getPlayerWeapons();
         const newWeaponIndexes = this.checkNewWeapons(weapons);
         if (newWeaponIndexes.length > 0) {
+            this.menuRenderer.menuMode();
             const newWeaponNames = await this.menuRenderer.renderNewWeaponScreen(weapons, newWeaponIndexes);
-            this.weaponNames.push([...newWeaponNames]);
+            this.weaponNames.push(...newWeaponNames);
         }
         
         const shareDetails = new ShareDetails(gameResult.success, this.xp, this.seed, this.level, this.weaponNames);

@@ -4,7 +4,7 @@ class PlayerStats {
     speed = 0;
     damage = 0;
     weapons = [];
-    xpLevelDifference = 500;
+    xpLevelDifference = 250;
     xpToUnlockWeapon = 500;
 
     constructor(xp, weapons) {

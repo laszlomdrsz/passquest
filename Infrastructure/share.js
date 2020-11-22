@@ -1,12 +1,19 @@
 class ShareInfrastructure {
 
     async share(shareDetails) {
-        const hostname = window.location.hostname;
+        
         const shareParam = this.urlParamEncode(shareDetails);
         const url = `/?p=${shareParam}`;
-        const text = 'Are you good enough?';
-        const title = 'Continue my game!';
+        const text = 'Continue my game in PassQuest!';
+        const title = 'PassQuest';
         const shareData = new ShareData(url, text, title);
+
+        try {
+            const hostname = window.location.hostname;
+            navigator.clipboard.writeText(hostname + url)
+        } catch (error) {
+            console.log('Clipboard write failed');
+        }
         return navigator.share(shareData);
     }
 

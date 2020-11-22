@@ -59,7 +59,7 @@ class GameController {
   speechInfrastructure = null;
 
   constructor(canvas, map, entities){
-    this.uiRenderer = new UiRenderer();
+    
     this.weaponChangerWorker = new Worker('Workers/weaponchanger.js');
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");;
@@ -67,13 +67,14 @@ class GameController {
     this.player = entities[0];
     [, ...this.enemies] = entities;
     this.speechInfrastructure = new SpeechInfrastructure();
-    this.speechInfrastructure.listenContinously((text) => {
-      this.weaponChangerWorker.postMessage([this.player.weapons, text]);
-    })
-    this.weaponChangerWorker.onMessage = function (weaponIndex) {
-      this.player.chooseWeapon(weaponIndex);
-    };
+    this.weaponChangerWorker.addEventListener('message', (message) => {
+      const data = message.data;
+      this.player.chooseWeapon(data.weaponIndex);
+    });
+    this.uiRenderer = new UiRenderer(this.speechInfrastructure, this.weaponChangerWorker, this.player.weapons);
   }
+
+
 
   start(){
     return new Promise((resolve) => {
@@ -101,7 +102,7 @@ class GameController {
         xp: this.player.xp
       }
     }
-    if (this.player.pos.y < 1) {
+    if (this.player.pos.y < 1 * config.tileSize) {
       return {
         success: true,
         xp: this.player.xp
@@ -119,6 +120,9 @@ class GameController {
       if (enemy.isDead()) {
         const index = this.enemies.indexOf(enemy);
         this.enemies.splice(index, 1);
+        if (this.enemies.length === 0) {
+          this.player.lastAttack.opponent = null;
+        }
       }
     }
   }
@@ -185,9 +189,9 @@ class Map {
       water: imgUrlToPattern(ctx, '/Assets/img/tiles/forest.jpg')
     }
     let i;
-    for(i = -10; i < this.height + 10; i++){
+    for(i = -20; i < this.height + 20; i++){
       let j;
-      for(j = -10; j < this.width + 10; j ++){
+      for(j = -20; j < this.width + 20; j ++){
         this.get(i,j).render(ctx, i, j, patterns);
       }
     }
